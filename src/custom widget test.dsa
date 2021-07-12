@@ -1,0 +1,42 @@
+// DAZ Studio version 4.15.0.2 filetype DAZ Script
+
+// Define an anonymous function;
+// serves as our main loop,
+// limits the scope of variables
+(function(){
+ 
+	// Create a basic dialog
+	var wDlg = new DzBasicDialog();
+ 
+	// Get the wrapped widget for the dialog
+	var oDlgWgt = wDlg.getWidget();
+ 
+	// Set the title of the dialog
+	wDlg.caption = "Custom Widget Test";
+ 
+	// Strip the space for a settings key
+	var sKey = wDlg.caption.replace( / /g, "" ) + "Dlg";
+ 
+	// Set an [unique] object name on the wrapped dialog widget;
+	// this is used for recording position and size separately
+	// from all other [uniquely named] DzBasicDialog instances
+	oDlgWgt.objectName = sKey;
+ 
+	var wMyWidget = new MDMyWidget( oDlgWgt, "MDMyWidget Title" );
+
+	wDlg.addWidget( wMyWidget );
+  
+	// Set the fixed size of the dialog
+//	wDlg.setFixedSize( 500, 500 );
+ 
+	// If the user accepts the dialog
+	if( wDlg.exec() ){
+	// If the user rejects the dialog
+		print( "User Accepted." );
+	} else {
+		// Do... something else
+		print( "User cancelled." );
+	}
+ 
+// Finalize the function and invoke
+})();
